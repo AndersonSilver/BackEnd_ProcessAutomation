@@ -6,7 +6,8 @@
   "author": "Luiz",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --transpile-only src/server.ts"
+    "dev": "ts-node-dev --transpile-only src/server.ts",
+    "build": "tsc -p tsconfig.json"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
