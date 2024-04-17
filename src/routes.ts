@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { CreateTabController } from "./controllers/tabs/01_CreateTabController";
+// import { CreateTabController } from "./controllers/tabs/01_CreateTabController";
 import { GetAllFlowsControllers } from "./controllers/flow/01_GetAllFlowsControllers";
 import { SelectFlowControllers } from "./controllers/flow/02_SelectFlowControllers";
 import { AuthUserController } from "./controllers/user/AuthUserController";
-import { getAllTabController } from "./controllers/tabs/00_getAllTabController";
-import { PutEmailControllers } from "./controllers/flow/03_PutEmailControllers";
-import { GetEmailControllers } from "./controllers/flow/04_GetEmailControllers";
+// import { getAllTabController } from "./controllers/tabs/00_getAllTabController";
+// import { PutEmailControllers } from "./controllers/flow/03_PutEmailControllers";
+// import { GetEmailControllers } from "./controllers/flow/04_GetEmailControllers";
 import { FunctionTriggerFlowsControllers } from "./controllers/flow/05_FunctionTriggerFlowsControllers";
 import { FunctionHabsControllers } from "./controllers/flow/06_FunctionHabsControllers";
 import { FunctionTabsControllers } from "./controllers/flow/07_FunctionTabsControllers";
@@ -20,16 +20,16 @@ const router = Router();
 router.post("/auth-user", new AuthUserController().handle);
 
 // - ROTAS PARA TABS
-router.post("/search-tab", isAuthenticated, new CreateTabController().handle);
-router.get("/search-all-tabs", isAuthenticated, new getAllTabController().handle);
+// router.post("/search-tab", isAuthenticated, new CreateTabController().handle);
+// router.get("/search-all-tabs", isAuthenticated, new getAllTabController().handle);
 
 // - ROTAS PARA FLOWS
 router.get("/search-all-flows",isAuthenticated,  new GetAllFlowsControllers().handle);
 router.get("/search-flow",isAuthenticated,  new SelectFlowControllers().handle);
 
 // - ROTAS PARA EMAILS
-router.put("/put-email", isAuthenticated, new PutEmailControllers().handle);
-router.get("/get-email", isAuthenticated, new GetEmailControllers().handle);
+// router.put("/put-email", isAuthenticated, new PutEmailControllers().handle);
+// router.get("/get-email", isAuthenticated, new GetEmailControllers().handle);
 
 // - ROTAS GATILHOS
 router.get("/search-trigger", isAuthenticated, new FunctionTriggerFlowsControllers().handle);
