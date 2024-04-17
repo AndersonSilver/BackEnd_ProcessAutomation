@@ -36,8 +36,13 @@ export class FunctionGetTokens {
       },
     };
 
-    // Save tokens to a JSON file
-    fs.writeFileSync(path.join(__dirname, '../../authToken', 'tokens.json'), JSON.stringify(tokens));
+    const dirPath = path.resolve(__dirname, "../../AuthTokens");
+    
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath, { recursive: true });
+    }
+
+    fs.writeFileSync(path.join(dirPath, "tokens.json"), JSON.stringify(tokens));
 
     return tokens;
   }
