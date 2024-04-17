@@ -1,0 +1,17 @@
+[
+  {
+    "sla_id": "aaa4f9d1-9624-4c36-a340-7d8258ec3ee2",
+    "name": "Default SLA",
+    "value": 432000
+  },
+  {
+    "sla_id": "4800f441-98ae-4ea9-a16d-094d98dadfbd",
+    "name": "Urgent SLA",
+    "value": "30"
+  },
+  {
+    "sla_id": "0f734386-7e3a-4a6d-becc-6302ad5d5875",
+    "name": "First Time SLA",
+    "value": 432000
+  }
+]
