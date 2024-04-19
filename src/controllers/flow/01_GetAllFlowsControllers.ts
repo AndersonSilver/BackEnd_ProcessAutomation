@@ -5,8 +5,10 @@ export class GetAllFlowsControllers {
   async handle(req: Request, res: Response) {
     try {
 
+      const token = req.headers.authorization as string;
+
       const functionGetAllFlows = new FunctionGetAllFlowsServices();
-      const result = await functionGetAllFlows.execute();
+      const result = await functionGetAllFlows.execute({token});
 
       return res.status(200).json(result);
     } catch (error) {

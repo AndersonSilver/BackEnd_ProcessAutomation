@@ -3,13 +3,12 @@ import path from "path";
 import fs from 'fs';
 
 interface FunctionTriggerFlowsServices {
-  trigger: any;
+  token: string;
 }
 
 export class FunctionGatilhoFlowsServices {
-  async execute() {
-    const tokensPath = path.resolve(__dirname, "../../authToken/tokens.json");
-    const tokens = require(tokensPath);
+  async execute(token: FunctionTriggerFlowsServices) {
+
     const dirPath = path.join(__dirname, '../../logs/before/flow/flow');
 
     const files = fs.readdirSync(dirPath);
@@ -76,7 +75,7 @@ export class FunctionGatilhoFlowsServices {
             "User-Agent":
               "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
             "X-Legacy-Support": "false",
-            Authorization: `Bearer ${tokens.tokens.AuthorizationRA}`,
+            Authorization: `${token}`,
           },
         });
         return id;

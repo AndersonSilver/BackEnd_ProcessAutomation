@@ -36,13 +36,13 @@ export class FunctionGetTokens {
       },
     };
 
-    const dirPath = path.resolve(__dirname, "../../AuthTokens");
+    // const dirPath = path.resolve(__dirname, "../../authtoken");
     
-    if (!fs.existsSync(dirPath)) {
-      fs.mkdirSync(dirPath, { recursive: true });
-    }
+    // if (!fs.existsSync(dirPath)) {
+    //   fs.mkdirSync(dirPath, { recursive: true });
+    // }
 
-    fs.writeFileSync(path.join(dirPath, "tokens.json"), JSON.stringify(tokens));
+    // fs.writeFileSync(path.join(dirPath, "tokens.json"), JSON.stringify(tokens));
 
     return tokens;
   }

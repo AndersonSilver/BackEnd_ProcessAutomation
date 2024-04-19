@@ -11,20 +11,17 @@ dotenv.config();
 
 interface FlowsRequest {
   flowId: any;
+  token: string;
 }
 
 export class FunctionSelectFlow {
-  async execute({flowId}: FlowsRequest) {
-    
-    const tokensPath = path.resolve(__dirname, "../../authToken/tokens.json");
+  async execute({flowId, token}: FlowsRequest) {
 
-      const tokens = require(tokensPath);
-      const acessToken = tokens.tokens.AuthorizationRA;
       const { data } = await axios.get(
         `https://forceflow.tech4h.com.br/flows/${flowId}?expansions%5B0%5D=automationFlowBlocks&expansions%5B1%5D=automationFlowTriggers`,
         {
           headers: {
-            Authorization: "Bearer " + acessToken,
+            Authorization: `${token}`,
           },
           maxContentLength: Infinity,
           maxBodyLength: Infinity,

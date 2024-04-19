@@ -3,17 +3,11 @@ require("dotenv").config();
 import path from "path";
 
 interface FlowsRequest {
-  deployFrom: string;
-  to: string;
-  jsonName: string;
+  token: string;
 }
 
 export class FunctionGetAllFlowsServices {
-  async execute() {
-
-    const tokensPath = path.resolve(__dirname, "../../authToken/tokens.json");
-
-    const tokens = require(tokensPath);
+  async execute(token: FlowsRequest) {
 
     let allFlows = [];
     let page = 1;
@@ -24,7 +18,7 @@ export class FunctionGetAllFlowsServices {
         `https://forceflow.tech4h.com.br/flows?search=&order=last&take=17&page=${page}`,
         {
           headers: {
-            Authorization: "Bearer " + tokens.tokens.AuthorizationRA,
+            Authorization: `${token.token}`,
           },
           maxContentLength: Infinity,
           maxBodyLength: Infinity,

@@ -6,6 +6,9 @@ import path from 'path';
 export class FunctionTriggerFlowsControllers {
   async handle(req: Request, res: Response) {
     try {
+
+      const token = req.headers.authorization as string;
+      
       const dirPath = path.join(__dirname, '../../logs/before/flow/flow');
 
       const files = fs.readdirSync(dirPath);
@@ -26,7 +29,7 @@ export class FunctionTriggerFlowsControllers {
       }
       
         const functionGatilhoFlows = new FunctionGatilhoFlowsServices();
-        const result = await functionGatilhoFlows.execute();
+        const result = await functionGatilhoFlows.execute({token});
 
         return res.status(200).json(result);
     } catch (error) {
