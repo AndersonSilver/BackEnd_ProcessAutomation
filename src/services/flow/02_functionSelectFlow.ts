@@ -5,6 +5,8 @@ import path from "path";
 import { FunctionSaveFlow } from "./03_functionSaveJsonFlow";
 import { FunctionGetBlockScript } from "./04_functionGetBlockScript";
 import { FunctionGetBlockEmail } from "./05_functionGetBlockEmail"
+const { LocalStorage } = require('node-localstorage');
+const localStorage = new LocalStorage('./scratch');
 
 dotenv.config();
 
@@ -15,13 +17,13 @@ interface FlowsRequest {
 }
 
 export class FunctionSelectFlow {
-  async execute({flowId, token}: FlowsRequest) {
+  async execute({flowId}: { flowId: any }, token: FlowsRequest) {
 
       const { data } = await axios.get(
         `https://forceflow.tech4h.com.br/flows/${flowId}?expansions%5B0%5D=automationFlowBlocks&expansions%5B1%5D=automationFlowTriggers`,
         {
           headers: {
-            Authorization: `${token}`,
+            Authorization: `${token.token}`,
           },
           maxContentLength: Infinity,
           maxBodyLength: Infinity,
@@ -39,6 +41,8 @@ export class FunctionSelectFlow {
       }
   
       fs.writeFileSync(fileName, JSON.stringify(data, null, 2));
+
+      localStorage.setItem('myData', JSON.stringify(data));
 
       const functionSaveFlow = new FunctionSaveFlow();
       const {All, Blocks } = await functionSaveFlow.execute({flow: data});

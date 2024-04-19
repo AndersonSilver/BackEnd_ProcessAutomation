@@ -6,8 +6,10 @@ export class WorkflowGetTabulacaoControllers {
     async handle(req: Request, res: Response) {
         try {
 
+            const token = req.headers.authorization as string;
+
             const workflowGetTabulacao = new WorkflowGetTabulacaoServices();
-            const result = await workflowGetTabulacao.execute();
+            const result = await workflowGetTabulacao.execute({token});
     
             return res.status(200).json(result);
         } catch (error) {

@@ -6,8 +6,10 @@ export class WorkflowGetHabilidadesControllers {
     async handle(req: Request, res: Response) {
         try {
 
+            const token = req.headers.authorization as string;
+
             const workflowGetHabilidades = new WorkflowGetHabilidadesServices();
-            const result = await workflowGetHabilidades.execute();
+            const result = await workflowGetHabilidades.execute({token});
     
             return res.status(200).json(result);
         } catch (error) {

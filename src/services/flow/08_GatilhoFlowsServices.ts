@@ -75,7 +75,7 @@ export class FunctionGatilhoFlowsServices {
             "User-Agent":
               "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
             "X-Legacy-Support": "false",
-            Authorization: `${token}`,
+            Authorization: `${token.token}`,
           },
         });
         return id;

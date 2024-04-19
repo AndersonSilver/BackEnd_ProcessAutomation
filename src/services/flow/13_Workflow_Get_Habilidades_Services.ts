@@ -6,11 +6,12 @@ interface Habs {
   id: string;
 }
 
-export class WorkflowGetHabilidadesServices {
-  async execute() {
-    const tokensPath = path.resolve(__dirname, "../../authToken/tokens.json");
-    const tokens = require(tokensPath);
+interface FunctionTokenServices {
+  token: string;
+}
 
+export class WorkflowGetHabilidadesServices {
+  async execute(token: FunctionTokenServices) {
     let page = 1;
     let hasMoreData = true;
     let response;
@@ -20,7 +21,7 @@ export class WorkflowGetHabilidadesServices {
         `https://api-clients.tech4h.com.br/skill?filter=name&page=${page}`,
         {
           headers: {
-            Authorization: `Bearer ${tokens.tokens.Authorization}`,
+            Authorization: `${token.token}`,
           },
         }
       );

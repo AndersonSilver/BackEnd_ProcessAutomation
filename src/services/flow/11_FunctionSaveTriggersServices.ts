@@ -3,11 +3,13 @@ import path from "path";
 import fs from 'fs';
 import os from 'os';
 
+interface FunctionTokenServices {
+  token: string;
+}
+
 export class FunctionSaveTriggersServices {
-  async execute() {
+  async execute(token : FunctionTokenServices) {
     const idsTriggersPath = path.resolve(__dirname, "../../logs/idsTriggers");
-    const tokensPath = path.resolve(__dirname, "../../authToken/tokens.json");
-    const tokens = require(tokensPath);
 
     const files = fs.readdirSync(idsTriggersPath);
     files.sort((a, b) => fs.statSync(path.join(idsTriggersPath, b)).mtime.getTime() - fs.statSync(path.join(idsTriggersPath, a)).mtime.getTime());
@@ -26,7 +28,7 @@ export class FunctionSaveTriggersServices {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${tokens.tokens.AuthorizationRA}`,
+              Authorization: `${token.token}`,
             },
           }
         );

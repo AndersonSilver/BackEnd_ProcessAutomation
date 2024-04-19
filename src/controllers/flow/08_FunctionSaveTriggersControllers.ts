@@ -7,8 +7,10 @@ export class FunctionSaveTriggersControllers {
   async handle(req: Request, res: Response) {
     try {
 
+      const token = req.headers.authorization as string;
+
         const functionSaveTriggersFlows = new FunctionSaveTriggersServices();
-        const result = await functionSaveTriggersFlows.execute();
+        const result = await functionSaveTriggersFlows.execute({token});
 
         return res.status(200).json(result);
     } catch (error) {

@@ -5,11 +5,12 @@ import fs from "fs";
 interface Tab {
   id: string;
 }
+interface FunctionTokenServices {
+  token: string;
+}
 
 export class WorkflowGetTabulacaoServices {
-  async execute() {
-    const tokensPath = path.resolve(__dirname, "../../authToken/tokens.json");
-    const tokens = require(tokensPath);
+  async execute(token: FunctionTokenServices) {
 
     let page = 1;
     let hasMoreData = true;
@@ -20,7 +21,7 @@ export class WorkflowGetTabulacaoServices {
         `https://api-clients.tech4h.com.br/tab?filter=name&page=${page}`,
         {
           headers: {
-            Authorization: `Bearer ${tokens.tokens.Authorization}`,
+            Authorization: `${token.token}`,
           },
         }
       );
