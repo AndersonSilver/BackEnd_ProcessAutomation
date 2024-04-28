@@ -27,29 +27,25 @@ export class FunctionGetBlockEmail {
       })
       .filter((script) => script !== null);
 
-    if (!emails) {
-      throw new Error("Error Get emails Flow");
-    }
+    // if (!emails) {
+    //   throw new Error("Error Get emails Flow");
+    // }
 
-    const logsDirectory = path.resolve(__dirname, "../../logs/before/flow/emails");
-    const now = new Date();
-    const formattedDate = `${now.getFullYear()}A${now.getMonth()+1}M${now.getDate()}D`;
-    const formattedTime = `${now.getHours()}H${now.getMinutes()}M${now.getSeconds()}S`;
-    const fileName = path.resolve(logsDirectory, `before_email_${formattedDate}_${formattedTime}.json`);
+    // const logsDirectory = path.resolve(__dirname, "../../logs/before/flow/emails");
+    // const now = new Date();
+    // const formattedDate = `${now.getFullYear()}A${now.getMonth()+1}M${now.getDate()}D`;
+    // const formattedTime = `${now.getHours()}H${now.getMinutes()}M${now.getSeconds()}S`;
+    // const fileName = path.resolve(logsDirectory, `before_email_${formattedDate}_${formattedTime}.json`);
 
-    if (!fs.existsSync(logsDirectory)) {
-      fs.mkdirSync(logsDirectory, { recursive: true });
-    }
+    // if (!fs.existsSync(logsDirectory)) {
+    //   fs.mkdirSync(logsDirectory, { recursive: true });
+    // }
 
-    fs.writeFileSync(fileName, JSON.stringify(emails, null, 2));
+    // fs.writeFileSync(fileName, JSON.stringify(emails, null, 2));
 
-    if (!emails) {
-      throw new Error("Error Get Scripts Flow");
-    }
-
-    if (!emails || emails.length === 0) {
-      return "Emails not found in flow";
-    }
+    // if (!emails || emails.length === 0) {
+    //   return "Emails not found in flow";
+    // }
 
 
     return emails;

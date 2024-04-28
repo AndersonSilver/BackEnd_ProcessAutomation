@@ -26,25 +26,25 @@ export class FunctionGetBlockScript {
         }
       }).filter((script) => script !== null);
 
-      const logsDirectory = path.resolve(__dirname, "../../logs/before/flow/scripts");
-      const now = new Date();
-      const formattedDate = `${now.getFullYear()}A${now.getMonth()+1}M${now.getDate()}D`;
-      const formattedTime = `${now.getHours()}H${now.getMinutes()}M${now.getSeconds()}S`;
-      const fileName = path.resolve(logsDirectory, `before_scripts_${formattedDate}_${formattedTime}.json`);
+      // const logsDirectory = path.resolve(__dirname, "../../logs/before/flow/scripts");
+      // const now = new Date();
+      // const formattedDate = `${now.getFullYear()}A${now.getMonth()+1}M${now.getDate()}D`;
+      // const formattedTime = `${now.getHours()}H${now.getMinutes()}M${now.getSeconds()}S`;
+      // const fileName = path.resolve(logsDirectory, `before_scripts_${formattedDate}_${formattedTime}.json`);
 
-      if (!fs.existsSync(logsDirectory)) {
-        fs.mkdirSync(logsDirectory, { recursive: true });
-      }
+      // if (!fs.existsSync(logsDirectory)) {
+      //   fs.mkdirSync(logsDirectory, { recursive: true });
+      // }
   
-      fs.writeFileSync(fileName, JSON.stringify(scripts, null, 2));
+      // fs.writeFileSync(fileName, JSON.stringify(scripts, null, 2));
 
-    if (!scripts) {
-      throw new Error("Error Get Scripts Flow");
-    }
+    // if (!scripts) {
+    //   throw new Error("Error Get Scripts Flow");
+    // }
 
-    if (!scripts || scripts.length === 0) {
-      return "scripts not found in flow";
-    }
+    // if (!scripts || scripts.length === 0) {
+    //   throw new Error("scripts not found in flow");
+    // }
 
 
     return scripts;

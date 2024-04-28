@@ -36,17 +36,6 @@ export class WorkflowGetHabilidadesServices {
 
     const habs = response.data.data.skill.map((skill: Habs) => skill.id);
 
-    const dirPath = path.resolve(__dirname, "../../logs/VerificaExistenciaHabilidade");
-    if (!fs.existsSync(dirPath)) {
-      fs.mkdirSync(dirPath, { recursive: true });
-    }
-
-    const date = new Date();
-    const timestamp = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}_${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
-    const filename = `Habs_${timestamp}.json`;
-
-    fs.writeFileSync(path.join(dirPath, filename), JSON.stringify(habs));
-
     return habs
   }
 }

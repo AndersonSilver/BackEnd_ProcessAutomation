@@ -5,8 +5,6 @@ import path from "path";
 import { FunctionSaveFlow } from "./03_functionSaveJsonFlow";
 import { FunctionGetBlockScript } from "./04_functionGetBlockScript";
 import { FunctionGetBlockEmail } from "./05_functionGetBlockEmail"
-const { LocalStorage } = require('node-localstorage');
-const localStorage = new LocalStorage('./scratch');
 
 dotenv.config();
 
@@ -29,20 +27,19 @@ export class FunctionSelectFlow {
           maxBodyLength: Infinity,
         }
       );
+      console.log(data);
 
-      const logsDirectory = path.resolve(__dirname, "../../logs/before/flow/flow");
-      const now = new Date();
-      const formattedDate = `${now.getFullYear()}A${now.getMonth()+1}M${now.getDate()}D`;
-      const formattedTime = `${now.getHours()}H${now.getMinutes()}M${now.getSeconds()}S`;
-      const fileName = path.resolve(logsDirectory, `before_flow_${formattedDate}_${formattedTime}.json`);
+      // const logsDirectory = path.resolve(__dirname, "../../logs/before/flow/flow");
+      // const now = new Date();
+      // const formattedDate = `${now.getFullYear()}A${now.getMonth()+1}M${now.getDate()}D`;
+      // const formattedTime = `${now.getHours()}H${now.getMinutes()}M${now.getSeconds()}S`;
+      // const fileName = path.resolve(logsDirectory, `before_flow_${formattedDate}_${formattedTime}.json`);
 
-      if (!fs.existsSync(logsDirectory)) {
-        fs.mkdirSync(logsDirectory, { recursive: true });
-      }
+      // if (!fs.existsSync(logsDirectory)) {
+      //   fs.mkdirSync(logsDirectory, { recursive: true });
+      // }
   
-      fs.writeFileSync(fileName, JSON.stringify(data, null, 2));
-
-      localStorage.setItem('myData', JSON.stringify(data));
+      // fs.writeFileSync(fileName, JSON.stringify(data, null, 2));
 
       const functionSaveFlow = new FunctionSaveFlow();
       const {All, Blocks } = await functionSaveFlow.execute({flow: data});

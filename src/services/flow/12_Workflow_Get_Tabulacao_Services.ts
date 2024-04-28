@@ -41,12 +41,6 @@ export class WorkflowGetTabulacaoServices {
       fs.mkdirSync(dirPath, { recursive: true });
     }
 
-    const date = new Date();
-    const timestamp = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}_${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
-    const filename = `Tabs_${timestamp}.json`;
-
-    fs.writeFileSync(path.join(dirPath, filename), JSON.stringify(tabs));
-
     return tabs;
   }
 }
