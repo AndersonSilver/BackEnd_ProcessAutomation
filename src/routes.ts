@@ -10,6 +10,8 @@ import { FunctionTabsControllers } from "./controllers/flow/07_FunctionTabsContr
 import { FunctionSaveTriggersControllers } from "./controllers/flow/08_FunctionSaveTriggersControllers";
 import { WorkflowGetHabilidadesControllers } from "./controllers/flow/09_Workflow_Get_Habilidades_Controllers";
 import { WorkflowGetTabulacaoControllers } from "./controllers/flow/10_Workflow_Get_Tabulacao_Controllers";
+import { UserLoginControllers } from "./controllers/webApp/01_UserLoginControllers";
+import { GetWorkflowControllers } from "./controllers/webApp/02_GetWorkflowControllers";
 
 const router = Router();
   
@@ -34,5 +36,10 @@ router.put("/save-trigger", new FunctionSaveTriggersControllers().handle);
 
 router.get("/get-habs", new WorkflowGetHabilidadesControllers().handle);
 router.get("/get-tabs", new WorkflowGetTabulacaoControllers().handle);
+
+// - ROTAS PARA USUÁRIOS WEBAPP
+router.post("/auth-user-webapp", new UserLoginControllers().handle);
+router.get("/search-workflow-webapp", new GetWorkflowControllers().handle);
+
 
 export { router };

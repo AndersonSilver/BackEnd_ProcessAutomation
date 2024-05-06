@@ -27,7 +27,6 @@ export class WorkflowGetTabulacaoServices {
       );
 
       if (response.data.length > 0) {
-        console.log(response.data);
         page++;
       } else {
         hasMoreData = false;
@@ -35,12 +34,6 @@ export class WorkflowGetTabulacaoServices {
     }
 
     const tabs = response.data.data.responseTabs.map((tab: Tab) => tab.id);
-
-    const dirPath = path.resolve(__dirname, "../../logs/VerificaExistenciaTabulacao");
-    if (!fs.existsSync(dirPath)) {
-      fs.mkdirSync(dirPath, { recursive: true });
-    }
-
     return tabs;
   }
 }
