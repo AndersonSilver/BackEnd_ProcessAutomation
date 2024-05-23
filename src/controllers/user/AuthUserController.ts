@@ -1,17 +1,20 @@
 import { Request, Response } from "express";
-import { FunctionGetTokens } from "../../services/users/functionGetTokens";
+import { UserLoginServices } from "../../services/users/functionGetTokens";
 
 export class AuthUserController {
   async handle(req: Request, res: Response) {
-    const { slug, email, password } = req.body;
-    const functionGetTokens = new FunctionGetTokens();
+    try {
+      const client = req.query.client as string;
+      const client_services = req.query.client_services as string;
+      const password = req.query.password as string;
+      const email = req.query.email as string;
 
-    const auth = await functionGetTokens.execute({
-      slug,
-      email,
-      password,
-    });
+      const functionUserLogin = new UserLoginServices();
+      const result = await functionUserLogin.execute({client, client_services, password, email});
 
-    return res.json(auth);
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
   }
 }
